@@ -613,8 +613,10 @@ if clicou:
 
         st.write("")
 
-        st.caption(
-            "As recomendações são exemplos representativos "
-            "do agrupamento e não constituem um sistema "
-            "tradicional de recomendação individual."
-        )
+        with st.expander("Limitações da aplicação"):
+    st.write(
+        "Os resultados dependem das informações disponíveis no dataset goodbooks-10k, "
+        "que não inclui necessariamente obras mais recentes. As características literárias "
+        "também foram simplificadas em 13 categorias, e as capas dos livros utilizam URLs "
+        "da própria base, podendo apresentar baixa resolução ou indisponibilidade."
+    )
