@@ -182,15 +182,20 @@ st.markdown(
         padding-bottom: 4rem;
     }
 
-    .stApp,
-    .stApp p,
-    .stApp span,
-    .stApp div,
-    .stApp label,
-    .stApp button,
-    .stApp input {
-        font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif !important;
-    }
+    .stApp {
+    font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif !important;
+}
+
+.stApp p,
+.stApp label,
+.stApp button,
+.stApp input,
+.stApp h1,
+.stApp h2,
+.stApp h3,
+.stApp h4 {
+    font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif !important;
+}
 
     .stApp p {
         color: #352727 !important;
