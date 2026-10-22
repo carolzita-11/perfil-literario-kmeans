@@ -1,0 +1,93 @@
+
+CASOS DE TESTE — PERFIL LITERÁRIO COM K-MEANS
+
+Ordem das características:
+1. Fantasia
+2. Romance
+3. Young Adult
+4. Mistério
+5. Ficção Histórica
+6. Ficção Científica
+7. Paranormal
+8. Ficção Contemporânea
+9. Horror
+10. Clássicos
+11. Aventura
+12. Thriller
+13. Crime
+
+
+TESTE 1 — ENTRADA VÁLIDA: FANTASIA
+
+Entrada:
+[5, 1, 2, 0, 0, 0, 3, 0, 0, 0, 4, 0, 0]
+
+Comportamento esperado:
+Classificação próxima ao perfil de Fantasia.
+
+Resultado obtido:
+Fantasia.
+
+Comentário:
+O resultado foi coerente com a entrada, pois os maiores valores foram atribuídos a fantasia, aventura e paranormal.
+
+
+TESTE 2 — ENTRADA VÁLIDA: ROMANCE
+
+Entrada:
+[0, 5, 3, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0]
+
+Comportamento esperado:
+Classificação próxima ao perfil de Romance.
+
+Resultado obtido:
+Romance.
+
+Comentário:
+O resultado foi coerente com a entrada, pois romance e ficção contemporânea receberam os maiores valores.
+
+
+TESTE 3 — ENTRADA VÁLIDA: MISTÉRIO, CRIME E THRILLER
+
+Entrada:
+[0, 0, 0, 5, 0, 0, 0, 1, 1, 0, 1, 5, 5]
+
+Comportamento esperado:
+Classificação próxima ao perfil de Mistério, Crime & Thriller.
+
+Resultado obtido:
+Mistério, Crime & Thriller.
+
+Comentário:
+O resultado foi coerente com a entrada, pois mistério, thriller e crime receberam os maiores valores.
+
+
+TESTE 4 — ENTRADA INVÁLIDA
+
+Entrada:
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+Comportamento esperado:
+A aplicação não deve realizar a classificação e deve exibir uma mensagem de validação.
+
+Resultado obtido:
+A aplicação exibiu a mensagem:
+"Antes de continuar, marque pelo menos uma preferência."
+
+Comentário:
+A entrada inválida foi tratada corretamente e nenhuma classificação foi realizada.
+
+
+TESTE 5 — CASO DIFÍCIL / LIMÍTROFE
+
+Entrada:
+[3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+
+Comportamento esperado:
+Não existe um perfil real previamente conhecido, pois todas as características possuem o mesmo peso. O objetivo é verificar como o modelo se comporta diante de uma entrada sem preferência dominante.
+
+Resultado obtido:
+Horror & Ficção Sombria.
+
+Comentário:
+O modelo selecionou o cluster cujo centroide apresentou a menor distância em relação à entrada normalizada. O resultado não deve ser interpretado como uma resposta objetiva correta, mas como o comportamento do modelo diante de uma entrada ambígua.
