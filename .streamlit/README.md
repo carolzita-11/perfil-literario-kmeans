@@ -10,7 +10,7 @@ A partir desses agrupamentos, foi criada uma aplicação em Streamlit na qual o 
 
 A aplicação está disponível pelo Streamlit no seguinte endereço:
 
-https://perfil-literario-kmeans-dsfeznqcfay6rw63k7my2j.streamlit.app
+https://perfil-literario-kmeans-3dvbfq7pktmg9tpk6m7z8p.streamlit.app
 
 **Dataset**
 
