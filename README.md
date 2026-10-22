@@ -12,9 +12,19 @@ A aplicação está disponível pelo Streamlit no seguinte endereço:
 
 https://perfil-literario-kmeans-3dvbfq7pktmg9tpk6m7z8p.streamlit.app
 
+**Repositório do projeto**
+
+O código e os arquivos utilizados na aplicação estão disponíveis no GitHub:
+
+https://github.com/carolzita-11/perfil-literario-kmeans
+
 **Dataset**
 
-Foi utilizado o dataset goodbooks-10k, que contém informações sobre aproximadamente 10 mil livros, incluindo autores, avaliações e tags associadas às obras.
+Foi utilizado o dataset público goodbooks-10k, disponível em:
+
+https://github.com/zygmuntz/goodbooks-10k
+
+O dataset contém informações sobre aproximadamente 10 mil livros, incluindo autores, avaliações e tags associadas às obras.
 
 Para a construção dos perfis literários foram utilizadas as relações entre livros e tags. Após a preparação dos dados, 9.402 livros apresentaram informações compatíveis com as características selecionadas para o modelo.
 
@@ -54,6 +64,8 @@ Um teste utilizou uma entrada inválida, com todos os valores iguais a zero. Nes
 
 Também foi realizado um teste de fronteira, no qual todas as preferências receberam o mesmo valor. Nesse cenário, o sistema classificou a entrada como Horror e Ficção Sombria, selecionando matematicamente o centroide mais próximo mesmo sem uma característica dominante.
 
+Os valores utilizados nos testes e os respectivos resultados estão registrados no arquivo casos_de_teste.txt.
+
 **Limitações**
 
 O sistema possui algumas limitações relacionadas principalmente ao dataset utilizado.
@@ -62,7 +74,7 @@ O goodbooks-10k representa um catálogo de um período anterior ao desenvolvimen
 
 As tags utilizadas para representar os livros dependem das informações disponíveis no próprio dataset e não abrangem necessariamente todas as características possíveis de uma obra.
 
-As imagens das capas também são obtidas por URLs presentes na base. Algumas imagens podem apresentar baixa resolução ou estar indisponíveis.
+As imagens das capas são obtidas por URLs presentes na base. Algumas podem apresentar baixa resolução ou estar indisponíveis.
 
 Além disso, os livros apresentados ao usuário correspondem aos exemplares mais representativos de cada cluster e não constituem um sistema completo de recomendação personalizada.
 
@@ -74,11 +86,13 @@ O arquivo modelo_kmeans_livros.pkl contém o modelo K-means treinado.
 
 O arquivo colunas_modelo.pkl armazena a ordem das características utilizadas pelo modelo.
 
-O arquivo livros_com_perfis.csv contém os livros processados e os clusters atribuídos a eles.
+O arquivo livros_app.csv contém os livros processados, seus respectivos clusters e os metadados utilizados pela aplicação.
 
-O arquivo books.csv contém os metadados utilizados para exibição dos livros.
+O arquivo requirements.txt apresenta as bibliotecas e versões necessárias para execução da aplicação.
 
-O arquivo requirements.txt apresenta as dependências necessárias para execução da aplicação.
+O arquivo casos_de_teste.txt registra as entradas e os resultados dos casos de teste.
+
+O arquivo dataset_instrucoes.txt apresenta a origem e as instruções para obtenção do dataset utilizado.
 
 O código utilizado para preparação dos dados, treinamento, comparação dos valores de K e avaliação do modelo foi desenvolvido separadamente em notebook.
 
@@ -86,8 +100,14 @@ O código utilizado para preparação dos dados, treinamento, comparação dos v
 
 Para executar o projeto localmente, é necessário instalar as dependências disponíveis no arquivo requirements.txt.
 
-Após a instalação das dependências, a aplicação pode ser iniciada por meio do comando streamlit run app.py.
+Após a instalação das dependências, a aplicação pode ser iniciada por meio do comando:
+
+streamlit run app.py
 
 **Tecnologias utilizadas**
 
 O projeto foi desenvolvido utilizando Python, Pandas, Scikit-learn, Joblib, Streamlit, Google Colab e GitHub.
+
+**Identificação**
+
+Projeto desenvolvido individualmente por Caroline Eleno Mateus para a disciplina Tópicos Avançados em Inteligência Artificial.
