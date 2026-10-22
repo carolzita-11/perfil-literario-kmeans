@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+from pathlib import Path
 
 
 # =====================================================
@@ -16,25 +17,68 @@ st.set_page_config(
 
 
 # =====================================================
+# CAMINHOS
+# Funciona tanto no Colab quanto no Streamlit Cloud
+# =====================================================
+
+PASTA_APP = Path(__file__).parent
+
+PASTA_DRIVE = Path(
+    "/content/drive/MyDrive/goodbooks10k"
+)
+
+
+def localizar_arquivo(nome):
+    """
+    Primeiro procura o arquivo junto do app.py.
+    Se não existir, procura na pasta do Google Drive.
+    """
+
+    arquivo_local = PASTA_APP / nome
+
+    if arquivo_local.exists():
+        return arquivo_local
+
+    arquivo_drive = PASTA_DRIVE / nome
+
+    if arquivo_drive.exists():
+        return arquivo_drive
+
+    raise FileNotFoundError(
+        f"Arquivo não encontrado: {nome}"
+    )
+
+
+# =====================================================
 # CARREGAMENTO DOS ARQUIVOS
 # =====================================================
 
 modelo = joblib.load(
-    "modelo_kmeans_livros.pkl"
+    localizar_arquivo(
+        "modelo_kmeans_livros.pkl"
+    )
 )
 
 colunas_modelo = joblib.load(
-    "colunas_modelo.pkl"
+    localizar_arquivo(
+        "colunas_modelo.pkl"
+    )
 )
 
 livros = pd.read_csv(
-    "livros_com_perfis.csv"
+    localizar_arquivo(
+        "livros_com_perfis.csv"
+    )
 )
 
 books_meta = pd.read_csv(
-    "books.csv"
+    localizar_arquivo(
+        "books.csv"
+    )
 )
 
+
+# Adicionar metadados utilizados na aplicação
 livros = livros.merge(
     books_meta[
         [
@@ -68,6 +112,7 @@ nomes_clusters = {
 
 
 descricoes_clusters = {
+
     0: (
         "Você se aproxima de obras clássicas e consagradas, histórias que "
         "atravessaram gerações e continuam relevantes pela força de seus "
@@ -210,8 +255,6 @@ st.markdown(
         color: #4D0E13 !important;
     }
 
-    /* BOTÃO — CORRIGIDO */
-
     div.stButton > button {
         background-color: #4D0E13 !important;
         color: #EEE4DA !important;
@@ -259,9 +302,13 @@ st.markdown(
 
 with st.container(border=True):
 
-    st.caption("DESCUBRA SEU PERFIL DE LEITURA")
+    st.caption(
+        "DESCUBRA SEU PERFIL DE LEITURA"
+    )
 
-    st.title("Que tipo de história te encontra primeiro?")
+    st.title(
+        "Que tipo de história te encontra primeiro?"
+    )
 
     st.write(
         "Seu gosto por leitura vai além de um gênero favorito. "
@@ -272,7 +319,7 @@ with st.container(border=True):
 
 
 # =====================================================
-# RESUMO TÉCNICO
+# RESUMO
 # =====================================================
 
 st.write("")
@@ -304,7 +351,9 @@ st.divider()
 # QUESTIONÁRIO
 # =====================================================
 
-st.subheader("Suas preferências")
+st.subheader(
+    "Suas preferências"
+)
 
 st.write(
     "Para cada afirmação, escolha um valor entre **0 e 5**. "
@@ -496,6 +545,7 @@ if clicou:
                 + principais_texto
             )
 
+
         st.write("")
 
 
@@ -552,12 +602,10 @@ if clicou:
                 ):
 
                     imagem = livro[
-                        "image_url"
+                        "small_image_url"
                     ]
 
-                    if pd.notna(
-                        imagem
-                    ):
+                    if pd.notna(imagem):
 
                         st.image(
                             imagem,
@@ -613,10 +661,27 @@ if clicou:
 
         st.write("")
 
-        with st.expander("Limitações da aplicação"):
+        st.caption(
+            "As recomendações são exemplos representativos "
+            "do agrupamento e não constituem um sistema "
+            "tradicional de recomendação individual."
+        )
+
+
+# =====================================================
+# LIMITAÇÕES
+# =====================================================
+
+st.write("")
+
+with st.expander(
+    "Limitações da aplicação"
+):
+
     st.write(
-        "Os resultados dependem das informações disponíveis no dataset goodbooks-10k, "
-        "que não inclui necessariamente obras mais recentes. As características literárias "
-        "também foram simplificadas em 13 categorias, e as capas dos livros utilizam URLs "
-        "da própria base, podendo apresentar baixa resolução ou indisponibilidade."
+        "Os resultados dependem das informações disponíveis no dataset "
+        "goodbooks-10k, que não inclui necessariamente obras mais recentes. "
+        "As características literárias também foram simplificadas em 13 "
+        "categorias, e as capas dos livros utilizam URLs da própria base, "
+        "podendo apresentar baixa resolução ou indisponibilidade."
     )
